@@ -2,6 +2,7 @@ package me.grey.picquery.ui.home
 
 import LogoRow
 import SearchInput
+import me.grey.picquery.ui.heatmap.HeatmapSearch
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -28,6 +29,7 @@ import me.grey.picquery.R
 import me.grey.picquery.common.Constants
 import me.grey.picquery.common.showToast
 import me.grey.picquery.domain.AlbumManager
+import me.grey.picquery.ui.heatmap.HeatmapSearch
 import org.koin.androidx.compose.koinViewModel
 import org.koin.compose.koinInject
 import rememberAppBottomSheetState
@@ -103,6 +105,24 @@ fun HomeScreen(
                         onStartSearch = { text ->
                             if (text.isNotEmpty()) {
                                 homeViewModel.searchText.value = text
+                                navigateToSearch(text)
+                            }
+                        },
+                    )
+                }
+            }
+
+            AnimatedVisibility(visible = !userGuideVisible.value) {
+                Column(
+                    verticalArrangement = Arrangement.Bottom,
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                ) {
+                    LogoRow(modifier = Modifier.padding(horizontal = 14.dp, vertical = 30.dp), logo = R.drawable.heatmap)
+                    HeatmapSearch(
+                        queryText = remember { homeViewModel.heatmapText },
+                        onStartSearch = { text ->
+                            if (text.isNotEmpty()) {
+                                homeViewModel.heatmapText.value = text
                                 navigateToSearch(text)
                             }
                         },

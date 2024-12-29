@@ -20,22 +20,24 @@ import me.grey.picquery.R
 private const val DEFAULT_LOGO_SIZE = 35f
 
 @Composable
-fun LogoRow(modifier: Modifier = Modifier, size: Float = DEFAULT_LOGO_SIZE) {
+fun LogoRow(modifier: Modifier = Modifier,
+            size: Float = DEFAULT_LOGO_SIZE,
+            logo: Int = R.drawable.ic_logo) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier,
         horizontalArrangement = Arrangement.Center
     ) {
-        LogoImage(size = size + 5)
+        LogoImage(size = size + 5, logo = logo)
         Box(modifier = Modifier.width(12.dp))
         LogoText(size = size)
     }
 }
 
 @Composable
-fun LogoImage(modifier: Modifier = Modifier, size: Float = DEFAULT_LOGO_SIZE + 5) {
+fun LogoImage(modifier: Modifier = Modifier, size: Float = DEFAULT_LOGO_SIZE + 5, logo: Int = R.drawable.ic_logo) {
     Image(
-        painter = painterResource(id = R.drawable.ic_logo),
+        painter = painterResource(id = logo),
         modifier = modifier.size(size.dp),
         contentDescription = "logo"
     )

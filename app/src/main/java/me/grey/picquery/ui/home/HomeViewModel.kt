@@ -28,6 +28,8 @@ class HomeViewModel(
 
     val searchText = mutableStateOf("")
 
+    val heatmapText = mutableStateOf("")
+
     val userGuideVisible = mutableStateOf(false)
 
     val currentGuideState = mutableStateOf(UserGuideTaskState())
